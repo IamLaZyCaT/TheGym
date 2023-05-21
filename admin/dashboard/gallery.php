@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+if(!isset($_SESSION['username'])){
+  header("location: ../index.php");
+}
 include 'includes/header.php';
 
 include 'includes/navbar.php';
@@ -76,7 +80,7 @@ include 'includes/navbar.php';
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                             
-                                <a class="dropdown-item" href=". /login.php" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../logout.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -136,7 +140,7 @@ include 'includes/navbar.php';
                                 <td><img src="<?php echo"process/gallery/upload/".$row['image'];?>" width="100px" alt="Image"></td>
                                 <td>
                                     <!-- <a href="#" class="btn btn-danger">DELETE</a> -->
-                                    <form action="process/delete.php" method="POST">
+                                    <form action="process/gallery/delete.php" method="POST">
                                         <input type="hidden" name="del_id" id="del_id" value="<?php echo $row['id'];  ?>"> 
                                         <input type="hidden" name="del_image" id="del_image" value="<?php echo $row['image'];  ?>"> 
 

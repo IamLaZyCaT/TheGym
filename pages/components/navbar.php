@@ -16,7 +16,7 @@
                     <li class="nav-list fs-4"><a href="#package" class="nav-link" >Package</a></li>
                     <!-- <li class="nav-list fs-4"><a href="#mercendaries" class="nav-link">Mercendaries</a></li> -->
                     <li class="nav-list fs-4"><a href="#contact" class="nav-link" >Contact info</a></li>
-                    <li class="nav-list fs-4"><a href="booking.html" class="nav-link" > Register</a></li>
+                    <li class="nav-list fs-4"><a href="booking.php" class="nav-link" > Register</a></li>
                 </ul>
                 <form class="d-flex me-5 ">
                     <input type="Search" placeholder="Search"  aria-label="Search" class="form-control bg-dark text-light">

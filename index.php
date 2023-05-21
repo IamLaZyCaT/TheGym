@@ -26,7 +26,7 @@
    <div class="container ms-5">
        <h1 class="text-light" >Don't wish for it . Work for it..</h1>
        <h3 class="text-light">JOIN THE CLASSES FOR RESULT</h3>
-       <button class="btn btn-outline-danger button"><a href="booking.html" class="nav-link text-light" >Join Now</a></button> 
+       <button class="btn btn-outline-danger button"><a href="booking.php" class="nav-link text-light" >Join Now</a></button> 
    </div> 
 </div>
 
@@ -80,77 +80,9 @@
 
 <div class="team container-fluid bg-black text-light p-5" id="team">
    <h1 class="d-flex justify-content-center p-5 topic" ><u class="text-danger mt-3">Teams</u></h1>
-<div class="slider owl-carousel">
-   <div class="card bg-black">
-      <div class="img">
-         <img src="assets/image/men1.png" alt="">
-      </div>
-      <div class="content">
-         <div class="title">
-            Random
-         </div>
-         <div class="sub-title">
-            trainer
-         </div>
-      </div>
-   </div>
-   <div class="card bg-black">
-      <div class="img">
-         <img src="assets/image/women1.png" alt="">
-      </div>
-      <div class="content">
-         <div class="title">
-            Random-1
-         </div>
-         <div class="sub-title">
-            trainer-1
-         </div>
-      </div>
-   </div>
-   <div class="card bg-black">
-      <div class="img">
-         <img src="assets/image/men2.png" alt="">
-      </div>
-      <div class="content">
-         <div class="title">
-            Random-2
-         </div>
-         <div class="sub-title">
-            trainer-2
-         </div>
-       
-      </div>
-   </div>
-   <div class="card bg-black">
-       <div class="img">
-          <img src="assets/image/women2.png" alt="">
-       </div>
-       <div class="content">
-          <div class="title">
-             Random-3
-          </div>
-          <div class="sub-title">
-             trainer-3
-          </div>
-        
-       </div>
-    </div>
-    <div class="card bg-black">
-     <div class="img">
-        <img src="assets/image/men3.png" alt="">
-      </div>
-      <div class="content">
-     <div class="title">
-        Random-4
-     </div>
-     <div class="sub-title">
-        trainer-4
-     </div>
-   
-  </div>
-  
-  </div>
-</div>
+
+   <?php include 'slider1.php'; ?>
+
 </div>
 
 
@@ -217,7 +149,7 @@
     
         <div class="d-flex justify-content-center">
            <button  class="btn btn-outline-danger  me-5 mt-5">
-              <a href="package.html" class="nav-link text-light ">More details</a>
+              <a href="table.php" class="nav-link text-light ">More details</a>
           </button>
         </div>
  
@@ -254,7 +186,7 @@
            </tr>
            <tr>
               <td><i class="fa-solid fa-location-dot"></i></td>
-              <td>balambu,chandagiri,kathmandu,nepal</td>
+              <td>balambu,kathmandu</td>
            </tr>
            
         </table>
@@ -271,18 +203,19 @@
 
      <div class="col-lg-5 col-md-12 border-light card text-light bg-black m-3" style="max-width:40rem">
         <h3>Send us message</h3>
-        <!-- <form action="https://maharjanp.com.np/project/pages/processes/contact.php" method="post" onsubmit="fun()" > -->
-         <form action="mailer.php" method="post" onsubmit="fun()" >
+        <!-- <form action="https://maharjanp.com.np/sendmail" method="post" > -->
+         <form id='form'>
+         <!-- action="mailer.php" method="POST"  -->
            <div class="row ms-2">
               <div class="col-lg-6 col-md-12 ">
                  <label for="">First Name</label>
                  <br>
-                 <input type="text" name="Fname" id="name" required placeholder="Enter First name" class="form-control bg-dark text-light">
+                 <input type="text" name="Fname" id="Fname" required placeholder="Enter First name" class="form-control bg-dark text-light">
               </div>
               <div class="col-lg-6 col-md-12 ">
                  <label for="">Last Name</label>
                  <br>
-                 <input type="text" name="Lname" id="name" required placeholder="Enter Last name" class="form-control bg-dark text-light">
+                 <input type="text" name="Lname" id="Lname" required placeholder="Enter Last name" class="form-control bg-dark text-light">
               </div>
            </div>
            <div class="row ms-2">
@@ -297,7 +230,7 @@
               <div class="col-lg-6 col-md-12 ">
                  email
                  <br>
-                 <input type="email" name="email" id="number" required placeholder="Enter email" class="form-control bg-dark text-light">
+                 <input type="email" name="email" id="email" required placeholder="Enter email" class="form-control bg-dark text-light">
               </div>
            </div>
 
@@ -305,15 +238,22 @@
               <div class="col-12">
                  message
                  <br>
-                 <textarea name="message" id="textarea" cols="30" rows="10" placeholder="Your message" class="form-control bg-dark text-light"></textarea>
+                 <textarea name="message" id="message" cols="30" rows="10" placeholder="Your message" class="form-control bg-dark text-light"></textarea>
               </div>
            </div>
+           
+           <div class="row  ms-2  mt-3 mb-5">
+                  <div id="error_message" class="text-danger"></div>
+                  <div id="success_message" class="text-success"></div>
+           </div>
+           
+
            <div class="row  ms-2  mt-3 mb-5">
               <div class="col-4">
                 <input type="submit"  class="btn btn-danger" name="submit" id="submit" value="Submit">
               </div>
            </div>
-           <span class="text-danger" id="message"></span>
+          
 
 
            
@@ -331,32 +271,72 @@
     
 </body>
 <script>
-    $(".slider").owlCarousel({
-      loop: true,
-      autoplay: true,
-      autoplayTimeout: 2000, //2000ms = 2s;
-      autoplayHoverPause: true,
-      responsiveClass:true,
-        responsive:{
-            0:{
-                items:1,
-                nav:true
-            },
-            600:{
-                items:3,
-                nav:false
-            },
-            1000:{
-                items:4,
-                nav:true,
-                loop:true
-            }
+   $(document).ready(function(){  
+   
+   $('#submit').click(function(){
+       event.preventDefault();
+        var Fname = $('#Fname').val();  
+        var Lname = $('#Lname').val();
+        var number = $('#number').val(); 
+        var email = $('#email').val();          
+        var message = $('#message').val();  
+        if(Fname == '' ||Lname == '' || number==''|| message == '' || email=='')  
+        {  
+             $('#error_message').html("All Fields are required"); 
+             setTimeout(function(){
+                        $('#error_message').fadeOut("slow");
+                    },2000);
+         
+            
+        }  
+      
+        
+         
+            
+         
+      
+        
+        else {
+         if (number.length==10)
+        {  
+             $('#error_message').html('');  
+             $.ajax({  
+                  url:"mailer.php",  
+                  method:"POST",  
+                  data:{Fname:Fname,Lname:Lname,number:number, message:message , email:email}, 
+                  beforeSend:function(){
+                   $('#submit').val("connecting...");
+                   }, 
+                  success:function(data){  
+                       $("form").trigger("reset");  
+                       $('#success_message').fadeIn().html(data);
+                       setTimeout(function(){  
+                            $('#success_message').fadeOut("Slow");  
+                       }, 2000);  
+                      $('#submit').val("Send Message");
+
+                  }  
+             });  
+        } 
+        else {
+         $('#error_message').html("Invalid number"); 
+             setTimeout(function(){
+                        $('#error_message').fadeOut("slow");
+                    },2000);
         }
-    });
+        }
+
+        
+   });  
+});
    
  </script>
+
+
+
     <!-- bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </html>
+

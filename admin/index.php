@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Gym Admin</title>
     <!-- icon -->
     <link rel="icon" href="../assets/image/icon-01.png">
     <!-- bootstrap online -->
@@ -25,7 +25,7 @@
 </nav>
 <!-- form -->
 <div class="container bg-black d-flex justify-content-center align-items-center col mt-5 admin-log" >
-    <form  method="POST" action="login.php"> 
+    <form  id="form" method="POST" action="login.php"> 
         <div class="form card  border-light bg-black d-flex justify-content-center align-items-center m-5 p-5">
                <div class="row bg-black">
                     <div class="col">
@@ -38,7 +38,7 @@
                     <div class="col">
                         <label for=""><i class="fa-solid fa-user text-danger "></i class="tx"> Username</label>
                         <input type="text" name="username" id="username" class="bg-black text-danger form-control mb-3" placeholder="Enter Username">
-                        
+                       
                     </div>
 
                 </div>
@@ -50,6 +50,12 @@
 
                 </div>
                 <div class="row">
+                
+                  <div id="error_message" class="text-danger"></div>
+                  <div id="success_message" class="text-success"></div>
+        
+                </div>
+                <div class="row">
                     <input type="submit" name="submit" id="submit" class=" btn btn-outline-danger mt-5" value="log In">
                 </div>
                </div> 
@@ -58,4 +64,51 @@
 </div>
         
 </body>
+<script>
+   $(document).ready(function(){  
+   
+   $('#submit').click(function(){
+       event.preventDefault();
+        var username = $('#username').val();  
+        var password = $('#password').val();
+        
+        if(username == '' ||password == '' )  
+        {  
+             $('#error_message').html("All Fields are required"); 
+             setTimeout(function(){
+                        $('#error_message').fadeOut("slow");
+                    },2000);
+         
+            
+        }  
+      
+        
+        else {
+         
+             $('#error_message').html('');  
+             $.ajax({  
+                  url:"mailer.php",  
+                  method:"POST",  
+                  data:{usename:username,password:password}, 
+                  beforeSend:function(){
+                   $('#submit').val("connecting...");
+                   }, 
+                  success:function(data){  
+                       $("form").trigger("reset");  
+                       $('#success_message').fadeIn().html(data);
+                       setTimeout(function(){  
+                            $('#success_message').fadeOut("Slow");  
+                       }, 2000);  
+                      $('#submit').val("Send Message");
+
+                  }  
+             });  
+        } 
+        
+
+        
+   });  
+});
+   
+ </script>
 </html>

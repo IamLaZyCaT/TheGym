@@ -1,5 +1,5 @@
 <!-- sub-nav -->
-<div class="sub container-fluid bg-black text-light">
+<div class="sub container-fluid bg-dark text-light">
  
 <div class="row">
   <div class="col">

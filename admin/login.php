@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $mysqli = new mysqli("localhost","root","","phpthegym");
 
@@ -14,23 +15,34 @@ else{
     
         // $sql="select * from loginform where username='".$username."'AND password='".$password."' limit 1";
 
-        $sql="select id from loginform where username = '$username' and password = '$password'";
         
-    
+        $sql="select id from loginform where username = '$username' and password = '$password'";
         $result=$mysqli->query($sql);
     
         // if(num_rows($result)==1)
         if($result->num_rows>0){
+            
+            $_SESSION["username"]=$username;
             header("location: ./dashboard/index.php");
         }
         else{
-            echo "you have entered wrong password";
+           if(empty($username)){
+            $name_error="empty username";
+            ?>
+                <script>
+
+            window.location.href = "./dashboard/index.php";
+            alert ("<?php echo $name_error  ?>");
+</script>
+
+<?php
+           }
             exit();
         }
     }
+
+
 }
-
-
 
 // $host="localhost";
 // $user="root";
